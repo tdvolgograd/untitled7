@@ -1,0 +1,188 @@
+
+<div *ngIf="userDetailForm" class="min-h-screen flex items-center justify-center bg-blue-100 px-4 py-10">
+  <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-lg font-semibold text-blue-600 text-center mb-6">User Details</h2>
+
+    <form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
+      <!-- Информация-->
+      <div class="space-y-4">
+        <div>
+          <label for="name" class="block text-gray-700 text-sm font-medium">Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Name"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="username" class="block text-gray-700 text-sm font-medium">Username</label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-gray-700 text-sm font-medium">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="phone" class="block text-gray-700 text-sm font-medium">Phone</label>
+          <input
+            id="phone"
+            type="text"
+            formControlName="phone"
+            placeholder="Phone"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="website" class="block text-gray-700 text-sm font-medium">Website</label>
+          <input
+            id="website"
+            type="text"
+            formControlName="website"
+            placeholder="Website"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Секция Адрес -->
+      <fieldset formGroupName="address" class="mt-6 space-y-4">
+        <legend class="text-gray-700 font-medium text-sm">Address</legend>
+
+        <div>
+          <label for="street" class="block text-gray-700 text-sm font-medium">Street</label>
+          <input
+            id="street"
+            type="text"
+            formControlName="street"
+            placeholder="Street"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="suite" class="block text-gray-700 text-sm font-medium">Suite</label>
+          <input
+            id="suite"
+            type="text"
+            formControlName="suite"
+            placeholder="Suite"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="city" class="block text-gray-700 text-sm font-medium">City</label>
+          <input
+            id="city"
+            type="text"
+            formControlName="city"
+            placeholder="City"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <fieldset formGroupName="geo" class="space-y-4">
+          <legend class="text-gray-700 font-medium text-sm">Coordinates</legend>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="lat" class="block text-gray-700 text-sm font-medium">Latitude</label>
+              <input
+                id="lat"
+                type="text"
+                formControlName="lat"
+                placeholder="Latitude"
+                class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="lng" class="block text-gray-700 text-sm font-medium">Longitude</label>
+              <input
+                id="lng"
+                type="text"
+                formControlName="lng"
+                placeholder="Longitude"
+                class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <!-- Секция компания -->
+      <fieldset formGroupName="company" class="mt-6 space-y-4">
+        <legend class="text-gray-700 text-sm font-medium">Company Information</legend>
+
+        <div>
+          <label for="companyName" class="block text-gray-700 text-sm font-medium">Company Name</label>
+          <input
+            id="companyName"
+            type="text"
+            formControlName="name"
+            placeholder="Company Name"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="catchPhrase" class="block text-gray-700 text-sm font-medium">Catchphrase</label>
+          <input
+            id="catchPhrase"
+            type="text"
+            formControlName="catchPhrase"
+            placeholder="Catchphrase"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="bs" class="block text-gray-700 text-sm font-medium">BS</label>
+          <input
+            id="bs"
+            type="text"
+            formControlName="bs"
+            placeholder="Business Specialization"
+            class="w-full border rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+      </fieldset>
+
+      <!-- Создание юзера -->
+      <div class="mt-6">
+        <button (click)="onSubmit()"
+                type="submit"
+                class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Create user
+        </button>
+      </div>
+      <!-- Выход -->
+      <div class="mt-6">
+        <button (click)="toggleExit()"
+                type="reset"
+                class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Exit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
