@@ -1,15 +1,21 @@
-version: "3.8"
+version: "3.9"
 
 services:
   web:
-    image: tdvolgograd/untitled7:latest
+    image: tdvolgograd/untitled7:latest  # Ваш Docker-образ
     ports:
-      - "80:80"
+      - "80:80"  # Проброс порта
     deploy:
-      replicas: 3
+      replicas: 3  # Количество реплик
       resources:
         limits:
           cpus: "0.5"
-          memory: "512M"
+          memory: "256M"
       restart_policy:
         condition: on-failure
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
