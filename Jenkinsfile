@@ -35,12 +35,16 @@ pipeline {
             steps {
                 script {
                     sh """
-                    # Stop and remove previous containers
-                    docker ps -q --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker stop
-                    docker ps -aq --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker rm
+                    # Check if the container with the name 'untitled7-staging' is running
+                    if [ \$(docker ps -q -f name=untitled7-staging) ]; then
+                        docker stop untitled7-staging
+                        docker rm untitled7-staging
+                    fi
 
-                    # Pull the latest image and run it
+                    # Pull the latest image
                     docker pull ${DOCKER_IMAGE}:latest
+
+                    # Start a new container with the latest image
                     docker run -d --name untitled7-staging -p 80:80 ${DOCKER_IMAGE}:latest
                     """
                 }
