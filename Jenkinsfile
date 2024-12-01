@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "tdvolgograd/untitled7"
-        REGISTRY_CREDENTIALS = '38ba95ce-6c10-4201-b8db-d276d469f83f' // Jenkins credentials ID для Docker Hub
+        REGISTRY_CREDENTIALS = '38ba95ce-6c10-4201-b8db-d276d469f83f' // Jenkins credentials ID for Docker Hub
     }
 
     stages {
@@ -44,14 +44,15 @@ pipeline {
 
         stage('Test Deployment') {
             steps {
-                // Добавьте проверки работоспособности приложения
-                sh "curl -f http://localhost:8080 || exit 1"
+                script {
+                    sh "curl -f http://localhost:8080 || exit 1"
+                }
             }
         }
 
         stage('Deploy to Production') {
             when {
-                input message: 'Deploy to Production?'
+                expression { input message: 'Deploy to Production?' }
             }
             steps {
                 script {
@@ -66,14 +67,15 @@ pipeline {
 
     post {
         failure {
-            mail to: 'your_email@example.com',
+            mail to: 'alisa05072019@gmail.com',
                  subject: "Deployment Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                  body: "Check the Jenkins logs for details."
         }
         success {
-            mail to: 'your_email@example.com',
+            mail to: 'alisa05072019@gmail.com',
                  subject: "Deployment Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                  body: "Deployment was successful."
         }
     }
 }
+
