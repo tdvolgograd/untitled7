@@ -62,7 +62,7 @@ pipeline {
         stage('Deploy to Production') {
             when {
                 expression {
-                    input message: 'Deploy to Production?' ok: 'Proceed'
+                    input message: 'Deploy to Production?', ok: 'Proceed'
                 }
             }
             steps {
