@@ -1,20 +1,23 @@
 
 
 services:
-  web:
-    image: tdvolgograd/untitled7:latest  # Ваш Docker-образ
+  staging:
+    image: tdvolgograd/untitled7:latest
+    container_name: untitled7-staging
     ports:
-      - "80:80"  # Проброс порта
-    deploy:
-      replicas: 3  # Количество реплик
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: "256M"
-      restart_policy:
-        condition: on-failure
+      - "8880:80"  # Exposing port 80 of the container to 8880 on the host
     networks:
       - app-network
+    restart: always
+
+  production:
+    image: tdvolgograd/untitled7:latest
+    container_name: untitled7-production
+    ports:
+      - "80:80"  # Exposing port 80 of the container to 80 on the host
+    networks:
+      - app-network
+    restart: always
 
 networks:
   app-network:
