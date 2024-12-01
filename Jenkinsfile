@@ -62,21 +62,20 @@ pipeline {
         stage('Deploy to Production') {
             when {
                 expression {
-                    input message: 'Deploy to Production?', ok: 'Proceed'
-                    steps {
-                                    script {
-                                        sh """
-                                        # Stop and remove previous production containers
-                                        docker ps -q --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker stop
-                                        docker ps -aq --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker rm
-
-                                        # Pull the latest image and run it
-                                        docker-compose up -d production
-                                        """
-                                    }
+                   input message: 'input-message', ok: 'OK'
                 }
             }
+            steps {
+                script {
+                    sh """
+                    # Stop and remove previous production containers
+                    docker ps -q --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker stop
+                    docker ps -aq --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker rm
 
+                    # Pull the latest image and run it
+                    docker-compose up -d production
+                    """
+                }
             }
         }
     }
