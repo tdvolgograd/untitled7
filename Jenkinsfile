@@ -73,8 +73,7 @@ pipeline {
                     docker ps -aq --filter "ancestor=${DOCKER_IMAGE}" | xargs -r docker rm
 
                     # Pull the latest image and run it
-                    docker pull ${DOCKER_IMAGE}:latest
-                    docker run -d --name untitled7-production -p 80:80 ${DOCKER_IMAGE}:latest
+                    docker-compose up -d production
                     """
                 }
             }
