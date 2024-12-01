@@ -65,17 +65,5 @@ pipeline {
         }
     }
 
-    post {
-        failure {
-            mail to: 'alisa05072019@gmail.com',
-                 subject: "Deployment Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "Check the Jenkins logs for details."
-        }
-        success {
-            mail to: 'alisa05072019@gmail.com',
-                 subject: "Deployment Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "Deployment was successful."
-        }
-    }
 }
 
