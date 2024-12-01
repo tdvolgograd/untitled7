@@ -41,7 +41,7 @@ pipeline {
 
                     # Pull the latest image and run it
                     docker pull ${DOCKER_IMAGE}:latest
-                    docker run -d --name untitled7-staging -p 80:80 ${DOCKER_IMAGE}:latest
+                    docker run -d --name untitled7-staging -p 888:888 ${DOCKER_IMAGE}:latest
                     """
                 }
             }
@@ -50,7 +50,7 @@ pipeline {
         stage('Test Deployment') {
             steps {
                 script {
-                    sh "curl -f http://localhost:80 || exit 1"
+                    sh "curl -f http://localhost:888 || exit 1"
                 }
             }
         }
