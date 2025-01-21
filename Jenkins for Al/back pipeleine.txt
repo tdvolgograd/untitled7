@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "tdvolgograd/untitled7"
+        REGISTRY_CREDENTIALS = '38ba95ce-6c10-4201-b8db-d276d469f83f' // Jenkins credentials ID for Docker Hub
+    }
+
+    stages {
+        
+       
+
+        stage("Roll back") {
+            steps {
+                script {
+                     sh """
+            # Check if a container with the name 'untitled7-prod' exists
+                docker stop untitled7-prod
+                sleep 10
+                docker rm untitled7-prod
+        
+            
+            # Pull the latest image
+            docker pull tdvolgograd/untitled7:back
+            
+            # Run the container with the latest image
+            docker run -d --name untitled7-prod -p 80:80 tdvolgograd/untitled7:back
+            """
+                }
+            }
+        }
+
+        stage('Test Deployment') {
+            steps {
+                script {
+                    sh "curl -f http://localhost:80 || exit 1"
+                }
+            }
+        }
+
+        
+           
+        }
+    }
